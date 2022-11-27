@@ -9,13 +9,17 @@ const ServiceCard = ({ prod }) => {
     dispatch,
   } = CartState();
   const history = useHistory();
-
   return (
     <div style={{ width: "30%", margin: "10px" }}>
       {" "}
       <Card
         onClick={() => {
-          history.push("/home");
+          history.push({
+            pathname: "/home",
+            state: {
+              data: { value: prod.name },
+            },
+          });
         }}
         style={{ cursor: "pointer" }}
       >

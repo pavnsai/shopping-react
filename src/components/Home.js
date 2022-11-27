@@ -1,12 +1,16 @@
 import { CartState } from "../context/Context";
 import Filters from "./Filters";
 import SingleProduct from "./SingleProduct";
+import { useHistory, useLocation } from "react-router-dom";
 
 const Home = () => {
   const {
     state: { products },
     productState: { sort, byStock, byFastDelivery, byRating, searchQuery },
   } = CartState();
+  const location = useLocation();
+  const prop = location.state?.data?.value;
+  console.log(prop);
 
   const transformProducts = () => {
     let sortedProducts = products;
@@ -36,7 +40,11 @@ const Home = () => {
         prod.name.toLowerCase().includes(searchQuery)
       );
     }
-
+    if (prop) {
+      sortedProducts = sortedProducts.filter((prod) =>
+        prod.typeOfService.toLowerCase().includes(prop.toLowerCase())
+      );
+    }
     return sortedProducts;
   };
 

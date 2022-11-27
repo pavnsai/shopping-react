@@ -1,5 +1,6 @@
-import { FaShoppingCart } from "react-icons/fa";
-import { AiFillDelete } from "react-icons/ai";
+import { FaShoppingCart, FaSignInAlt } from "react-icons/fa";
+import { AiFillDelete, AiTwotoneHome } from "react-icons/ai";
+
 import {
   Badge,
   Button,
@@ -23,8 +24,14 @@ const Header = () => {
   return (
     <Navbar bg="dark" variant="dark" style={{ height: 80 }}>
       <Container>
+        {/* <Navbar.Brand>
+          <Link to="/home">Services</Link>
+        </Navbar.Brand> */}
         <Navbar.Brand>
-          <Link to="/home">Shopping Cart</Link>
+          <Link to="/">
+            {" "}
+            <AiTwotoneHome color="white" fontSize="40px" />
+          </Link>
         </Navbar.Brand>
         {!["cart"].includes(useLocation().pathname.split("/")[1]) && (
           <Navbar.Text className="search">
@@ -43,8 +50,14 @@ const Header = () => {
             />
           </Navbar.Text>
         )}
+        <Navbar.Brand>
+          <Link to="/login">
+            {" "}
+            <FaSignInAlt color="white" fontSize="40px" /> Login
+          </Link>
+        </Navbar.Brand>
         <Nav>
-          <Dropdown alignRight>
+          <Dropdown>
             <Dropdown.Toggle variant="success">
               <FaShoppingCart color="white" fontSize="25px" />
               <Badge>{cart.length}</Badge>
