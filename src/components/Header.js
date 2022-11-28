@@ -33,7 +33,7 @@ const Header = () => {
             <AiTwotoneHome color="white" fontSize="40px" />
           </Link>
         </Navbar.Brand>
-        {!["cart"].includes(useLocation().pathname.split("/")[1]) && (
+        {!["cart", ""].includes(useLocation().pathname.split("/")[1]) && (
           <Navbar.Text className="search">
             <FormControl
               style={{ width: 500 }}
