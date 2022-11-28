@@ -14,6 +14,13 @@ export const cartReducer = (state, action) => {
           c.id === action.payload.id ? (c.qty = action.payload.qty) : c.qty
         ),
       };
+    case "UPDATE":
+      console.log(action);
+      return {
+        ...state,
+        products: action.payload.products,
+        services: action.payload.services,
+      };
     default:
       return state;
   }

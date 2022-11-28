@@ -2,6 +2,8 @@ import { CartState } from "../context/Context";
 import Filters from "./Filters";
 import SingleProduct from "./SingleProduct";
 import { useHistory, useLocation } from "react-router-dom";
+import Model from "./Model";
+import { useState } from "react";
 
 const Home = () => {
   const {
@@ -10,8 +12,8 @@ const Home = () => {
   } = CartState();
   const location = useLocation();
   const prop = location.state?.data?.value;
-  console.log(prop);
-
+  console.log(products);
+  const [modalOpen, setModalOpen] = useState(false);
   const transformProducts = () => {
     let sortedProducts = products;
 
@@ -47,17 +49,46 @@ const Home = () => {
     }
     return sortedProducts;
   };
-
+  const handleClick = (data) => {
+    console.log(data);
+    setModalOpen(true);
+    console.log("ji");
+  };
   return (
     <div className="home">
       <Filters />
       <div className="productContainer">
         {transformProducts().map((prod) => (
-          <SingleProduct prod={prod} key={prod.id} />
+          <SingleProduct
+            prod={prod}
+            key={prod.id}
+            onClickFunction={(data) => handleClick(data)}
+          />
         ))}
+        {modalOpen && (
+          <Model
+            status={modalOpen}
+            handleClick={"handleClick"}
+            text={"text"}
+            handleChange={"handleChange"}
+          />
+        )}
       </div>
     </div>
   );
 };
-
+const ChildComponent = ({ isOpen, text, handleChange, handleClick }) => {
+  return (
+    <>
+      {isOpen && (
+        <Model
+          status={isOpen}
+          handleClick={handleClick}
+          text={text}
+          handleChange={handleChange}
+        />
+      )}
+    </>
+  );
+};
 export default Home;

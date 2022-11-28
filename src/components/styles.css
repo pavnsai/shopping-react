@@ -21,7 +21,12 @@
   height: 50px;
   object-fit: cover;
 }
-
+.serviceItemImage {
+  object-fit: cover;
+  border-radius: 55;
+  width: 50px;
+  height: 150px;
+  }
 .cartItemDetail {
   display: flex;
   flex: 1;

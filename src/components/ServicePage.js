@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Filters from "./Filters";
 import SingleProduct from "./SingleProduct";
 import { CartState } from "../context/Context";
@@ -6,38 +6,10 @@ import ServiceCard from "./ServiceCard";
 
 const ServicePage = () => {
   const {
-    state: { products },
+    state: { products, services },
     productState: { sort, byStock, byFastDelivery, byRating, searchQuery },
   } = CartState();
-  const arr = [
-    {
-      id: "1a9ea31b-34b2-43b3-9198-7fc76cad5812",
-      name: "Photography",
-      price: "733.00",
-      image: "http://placeimg.com/640/480/nature",
-      inStock: 6,
-      fastDelivery: false,
-      ratings: 3,
-    },
-    {
-      id: "5847168d-762a-4d0f-9830-9267bf3df39e",
-      name: "Electronic Repair",
-      price: "233.00",
-      image: "http://placeimg.com/640/480/cats",
-      inStock: 6,
-      fastDelivery: false,
-      ratings: 3,
-    },
-    {
-      id: "d672791c-e64f-465c-b463-0838917d211e",
-      name: "Hair Saloon",
-      price: "914.00",
-      image: "http://placeimg.com/640/480/food",
-      inStock: 7,
-      fastDelivery: false,
-      ratings: 4,
-    },
-  ];
+  // const [services, updateServices] = useState([]);
   const transformProducts = () => {
     let sortedProducts = products;
 
@@ -67,8 +39,31 @@ const ServicePage = () => {
       );
     }
 
-    return arr;
+    return sortedProducts;
   };
+
+  useEffect(() => {
+    // console.log("inside");
+    const arr = [
+      {
+        id: "1a9ea31b-34b2-43b3-9198-7fc76cad5812",
+        serviceName: "Photography",
+        image: "http://placeimg.com/640/480/nature",
+      },
+      {
+        id: "5847168d-762a-4d0f-9830-9267bf3df39e",
+        serviceName: "Electronic Repair",
+        image: "http://placeimg.com/640/480/cats",
+      },
+      {
+        id: "d672791c-e64f-465c-b463-0838917d211e",
+        serviceName: "Hair Saloon",
+        image: "http://placeimg.com/640/480/food",
+      },
+    ];
+    // updateServices(arr);
+  }, []);
+
   return (
     <div>
       <div style={{ marginLeft: "10%" }}>
@@ -76,7 +71,7 @@ const ServicePage = () => {
       </div>
       <div className="home">
         <div className="productContainer" style={{ marginLeft: "10%" }}>
-          {transformProducts().map((prod) => (
+          {services.map((prod) => (
             <ServiceCard prod={prod} key={prod.id} />
           ))}
         </div>

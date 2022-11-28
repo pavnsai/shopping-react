@@ -2,7 +2,7 @@ import { Card, Button } from "react-bootstrap";
 import { CartState } from "../context/Context";
 import Rating from "./Rating";
 
-const SingleProduct = ({ prod }) => {
+const SingleProduct = ({ prod, onClickFunction }) => {
   const {
     state: { cart },
     dispatch,
@@ -18,7 +18,12 @@ const SingleProduct = ({ prod }) => {
           src={prod.image}
         />
         <Card.Body>
-          <Card.Title>{prod.name}</Card.Title>
+          <Card.Title
+            style={{ cursor: "pointer" }}
+            onClick={() => onClickFunction(prod)}
+          >
+            {prod.name}
+          </Card.Title>
           <Card.Subtitle style={{ paddingBottom: 10 }}>
             <div>₹ {prod.price.split(".")[0]}</div>
             {/* {prod.fastDelivery ? (

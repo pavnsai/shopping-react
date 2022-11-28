@@ -17,7 +17,7 @@ const ServiceCard = ({ prod }) => {
           history.push({
             pathname: "/home",
             state: {
-              data: { value: prod.name },
+              data: { value: prod.serviceName },
             },
           });
         }}
@@ -26,11 +26,12 @@ const ServiceCard = ({ prod }) => {
         <Card.Img
           variant="top"
           //   class="rounded-circle"
+          className="serviceItemImage"
           src={prod.image}
           alt={prod.name}
         />
         <Card.Body>
-          <Card.Title>{prod.name}</Card.Title>
+          <Card.Title>{prod.serviceName}</Card.Title>
           <Card.Subtitle style={{ paddingBottom: 10 }}></Card.Subtitle>
         </Card.Body>
       </Card>

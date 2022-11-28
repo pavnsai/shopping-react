@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Cart from "./components/Cart";
 import ServicePage from "./components/ServicePage";
+import React from "react";
 
 function App() {
   return (
@@ -12,9 +13,6 @@ function App() {
       <div className="App">
         <Route path="/" exact>
           <ServicePage />
-        </Route>
-        <Route path="/hello" exact>
-          <Cart />
         </Route>
         <Route path="/home" exact>
           <Home />
