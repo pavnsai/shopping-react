@@ -14,6 +14,7 @@ const Home = () => {
   const prop = location.state?.data?.value;
   console.log(products);
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalData, setmodalData] = useState({});
   const transformProducts = () => {
     let sortedProducts = products;
 
@@ -52,7 +53,12 @@ const Home = () => {
   const handleClick = (data) => {
     console.log(data);
     setModalOpen(true);
+    setmodalData(data);
     console.log("ji");
+  };
+  const handleClickfromModal = () => {
+    console.log("hello from modal");
+    setModalOpen(false);
   };
   return (
     <div className="home">
@@ -68,9 +74,8 @@ const Home = () => {
         {modalOpen && (
           <Model
             status={modalOpen}
-            handleClick={"handleClick"}
-            text={"text"}
-            handleChange={"handleChange"}
+            handleClick={handleClickfromModal}
+            prod={modalData}
           />
         )}
       </div>

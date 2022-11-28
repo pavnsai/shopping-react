@@ -26,11 +26,6 @@ const SingleProduct = ({ prod, onClickFunction }) => {
           </Card.Title>
           <Card.Subtitle style={{ paddingBottom: 10 }}>
             <div>₹ {prod.price.split(".")[0]}</div>
-            {/* {prod.fastDelivery ? (
-              <div>Fast Delivery</div>
-            ) : (
-              <div>4 days delivery</div>
-            )} */}
             <Rating rating={prod.ratings} />
           </Card.Subtitle>
           {cart.some((p) => p.id === prod.id) ? (
